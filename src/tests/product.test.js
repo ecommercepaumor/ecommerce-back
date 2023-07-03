@@ -1,11 +1,11 @@
 const request = require("supertest");
 const app = require("../app");
-require("../models");
 const Category = require("../models/Category");
+require("../models");
 
 const BASE_URL = "/api/v1/products";
-const BASE_URL_USER = "/api/v1/users/login";
 let TOKEN;
+const BASE_URL_USER = "/api/v1/users/login";
 let category;
 let productId;
 
@@ -47,6 +47,15 @@ test("GET -> 'BASE_URL', should return status code 200 and res.body to have leng
 
   expect(res.status).toBe(200);
   expect(res.body).toHaveLength(1);
+  expect(res.body[0]).toBeDefined();
+});
+
+test("GET -> 'BASE_URL?category = category.id ', should return status code 200, and res.body to have length 1 and res.body[0] tobe defined", async () => {
+  const res = await request(app).get(`${BASE_URL}?category=${category.id}`);
+
+  expect(res.status).toBe(200);
+  expect(res.body).toHaveLength(1);
+  expect(res.body[0]).toBeDefined();
 });
 
 test("GET ONE -> 'BASE_URL/:id', should return status code 200 and res.body to have length 1", async () => {
