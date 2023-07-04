@@ -26,15 +26,12 @@ test("POST -> 'BASE_URL_CART', should status code 201 and res.body.title === bod
     description: "lorem ipsum",
     price: "200.30",
   };
-
   product = await Product.create(productBody);
-
   const cartBody = {
     quantity: 1,
     userId,
     productId: product.id,
   };
-
   const res = await request(app)
     .post(BASE_URL_CART)
     .send(cartBody)
@@ -69,7 +66,6 @@ test("DELETE -> 'BASE_URL_CART/:id',should return status code 204", async () => 
   const res = await request(app)
     .delete(`${BASE_URL_CART}/${product.id}`)
     .set("Authorization", `Bearer ${TOKEN}`);
-
   expect(res.status).toBe(204);
   await product.destroy();
 });

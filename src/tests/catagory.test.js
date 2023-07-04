@@ -1,8 +1,8 @@
 const request = require("supertest");
 const app = require("../app");
 
-const BASE_URL = "/api/v1/categories";
 const BASE_URL_USER = "/api/v1/users/login";
+const BASE_URL = "/api/v1/categories";
 let TOKEN;
 let categoryId;
 
@@ -29,8 +29,8 @@ test("POST -> 'BASE_URL', should return status code 201 and res.body.name === bo
 });
 
 test("GET -> 'BASE_URL', should return status code 200 and res.body to have length 1", async () => {
-  const res = await request(app).get(BASE_URL);
-
+  const res = await request(app)
+    .get(BASE_URL);
   expect(res.status).toBe(200);
   expect(res.body).toHaveLength(1);
 });

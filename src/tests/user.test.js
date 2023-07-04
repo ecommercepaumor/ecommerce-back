@@ -60,7 +60,6 @@ test("POST -> 'BASE_URL/login', should return status code 200 and res.body.email
     const res = await request(app)
         .post(`${BASE_URL}/login`)
         .send(userLogin)
-
     expect(res.status).toBe(200)
     expect(res.body.user.email).toBe(userLogin.email)
     expect(res.body.token).toBeDefined()
