@@ -8,10 +8,9 @@ const routerProductImg = express.Router();
 
 routerProductImg.route('/')
     .get(verifyJWT, getAll)
-    .post(upload.single('image'), create);
+    .post(upload.single('image'),verifyJWT, create);
 
 routerProductImg.route('/:id')
     .delete(verifyJWT, remove)
-
 
 module.exports = routerProductImg;
